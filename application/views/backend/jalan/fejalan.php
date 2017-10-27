@@ -8,13 +8,13 @@
      <form action="<?php echo base_url()?>index.php/cjalan/update" method="post" enctype="multipart/form-data"><!-- form action mengarah ke fungsi update pada controller -->
        <table class="table table-striped">
          <tr>
-          <td colspan="2"><span class="fa fa-info-circle"></span> Ket : Ubah ukuran foto yang akan di upload menjadi <b>500 x 281 px</b> | <font color="red"> Max 2MB [ 2048 KB ]</font></td>
+          <td colspan="2"><span class="fa fa-info-circle"></span> Upload gambar berukuran Max <b>1288 x 768 px</b> | <font color="red"> Kapasitas Max 2MB [ 2048 KB ]</font></td>
          </tr>
          <tr>
-          <td style="width:15%;">File Foto</td>
+          <td><label class="control-label">File Foto</label></td>
           <td>
             <div class="col-sm-6">
-                <input type="file" name="filefoto" class="form-control">
+                <input type="file" class="file" name="filefoto" class="form-control">
                 <!-- file gambar kita buat pada field hidden -->
                 <input type="hidden" name="filelama" class="form-control" value="<?php echo $row->nm_gbr;?>">
                 <!-- Id gambar kita hidden pada input field dimana berfungsi sebagai identitas yang dibawa untuk update -->
@@ -31,7 +31,7 @@
          </tr>
 
          <tr>
-          <td style="width:15%;">Nama Jalan</td>
+          <td><label class="control-label">Nama Jalan</label></td>
           <td>
             <div class="col-sm-6">
                 <input name="textnama" class="form-control" value="<?php echo $row->nama_gbr;?>"></input>
@@ -40,7 +40,7 @@
          </tr>  
 
          <tr>
-          <td style="width:15%;">Jenis</td>
+          <td><label class="control-label">Jenis</label></td>
           <td>
             <div class="col-sm-6">
                 <select name="jenis" class="form-control select">
@@ -55,7 +55,7 @@
          </tr
 
          <tr>
-          <td style="width:15%;">Kondisi</td>
+          <td><label class="control-label">Kondisi</label></td>
           <td>
             <div class="col-sm-6">
                 <select name="kondisi" class="form-control select">
@@ -70,7 +70,7 @@
          </tr>
 
          <tr>
-          <td style="width:15%;">Panjang Jalan</td>
+          <td><label class="control-label">Panjang Jalan</label></td>
           <td>
             <div class="col-sm-6">
                 <input name="panjang" class="form-control" value="<?php echo $row->panjang;?>"></input>
@@ -132,7 +132,7 @@
          </tr>               
 
          <tr>
-          <td style="width:15%;">Keterangan Foto</td>
+          <td><label class="control-label">Keterangan Foto</label></td>
           <td>
             <div class="col-sm-12">
                 <textarea class="form-control" rows="5" name="textket"><?php echo 'tess';?></textarea>
