@@ -155,6 +155,12 @@ class Cjalan extends CI_Controller
                  'nm_gbr' =>$gbr['file_name'],
                  'tipe_gbr' =>$gbr['file_type'],
                  'nama_gbr' =>$this->input->post('textnama'),
+                 'jenis' =>$this->input->post('jenis'),
+                 'kondisi' =>$this->input->post('kondisi'),
+                 'panjang' =>$this->input->post('panjang'),
+                 'lokasi' =>$this->input->post('lokasi'),
+                 'kecamatan' =>$this->input->post('kecamatan'),
+                 'kelurahan' =>$this->input->post('kelurahan'),
                  'ket_gbr' =>$this->input->post('textket')
  
                );
@@ -176,7 +182,15 @@ class Cjalan extends CI_Controller
        }else{ /* jika file foto tidak ada maka query yg dijalankan adalah skrip ini  */
  
            $data = array(
-               'ket_gbr' =>$this->input->post('textket')
+               // 'ket_gbr' =>$this->input->post('textket')
+                 'nama_gbr' =>$this->input->post('textnama'),
+                 'jenis' =>$this->input->post('jenis'),
+                 'kondisi' =>$this->input->post('kondisi'),
+                 'panjang' =>$this->input->post('panjang'),
+                 'lokasi' =>$this->input->post('lokasi'),
+                 'kecamatan' =>$this->input->post('kecamatan'),
+                 'kelurahan' =>$this->input->post('kelurahan'),
+                 'ket_gbr' =>$this->input->post('textket')
            );
  
            $where =array('id'=>$idgbr); //array where query sebagai identitas pada saat query dijalankan
