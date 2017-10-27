@@ -73,7 +73,7 @@
           <td style="width:15%;">Panjang Jalan</td>
           <td>
             <div class="col-sm-6">
-                <input name="textnama" class="form-control" value="<?php echo $row->panjang;?>"></input>
+                <input name="panjang" class="form-control" value="<?php echo $row->panjang;?>"></input>
             </div>
           </td>
          </tr> 
@@ -113,7 +113,7 @@
           <td><label class="control-label">Kelurahan</label></td>
           <td>
             <div class="col-sm-6">
-                <select name="keluarahan" class="form-control select">
+                <select name="kelurahan" class="form-control select">
                   <option value="">- Pilih -</option>
                     <?php
                       $sql ="SELECT * FROM tbl_kelurahan";
