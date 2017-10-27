@@ -40,13 +40,13 @@
         </tr>
 
         <tr>
-          <td>Kelurahan </td>
-          <td><?php echo $rowdata->kelurahan; ?></td>
+          <td>Kecamatan </td>
+          <td><?php echo $rowdata->kecamatan; ?></td>
         </tr>
 
         <tr>
-          <td>Kecamatan </td>
-          <td><?php echo $rowdata->kecamatan; ?></td>
+          <td>Kelurahan </td>
+          <td><?php echo $rowdata->kelurahan; ?></td>
         </tr>
 
         <tr>
