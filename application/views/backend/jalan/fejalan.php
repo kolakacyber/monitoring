@@ -88,6 +88,24 @@
          </tr>   
 
          <tr>
+          <td><label class="control-label">Latitude</label></td>
+          <td>
+            <div class="col-sm-6">
+                <input name="latitude" class="form-control" value="<?php echo $row->latitude;?>"></input>
+            </div>
+          </td>
+         </tr> 
+
+         <tr>
+          <td><label class="control-label">Longitude</label></td>
+          <td>
+            <div class="col-sm-6">
+                <input name="longitude" class="form-control" value="<?php echo $row->longitude;?>"></input>
+            </div>
+          </td>
+         </tr> 
+
+         <tr>
           <td><label class="control-label">Kecamatan</label></td>
           <td>
             <div class="col-sm-6">
