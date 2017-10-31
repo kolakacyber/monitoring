@@ -20,11 +20,11 @@ class Cjalan extends CI_Controller
           redirect('auth/login', 'refresh');
         }
 
-        $data['content'] = 'backend/jalan/vjalan';
-        $data['judul']='Upload'; //varibel title
-        $data['sub_judul']='Jalan'; //varibel title 
+        $data['content']    = 'backend/jalan/vjalan';
+        $data['judul']      ='Upload'; //varibel title
+        $data['sub_judul']  ='Jalan'; //varibel title 
 
-        $data['query'] = $this->mjalan->get_allimage(); //query dari model
+        $data['query']      = $this->mjalan->get_allimage(); //query dari model
          
         $this->load->view('template',$data); //tampilan awal ketika controller jalan di akses
     }
@@ -32,7 +32,7 @@ class Cjalan extends CI_Controller
     //############ TAMBAHAN KU ############
     public function jalan_kolaka()
     {
-        $isi['data'] = $this->mjalan->get_allimage();
+        $isi['data']        = $this->mjalan->get_allimage();
         $isi['sub_judul']   = 'jalan';
         $this->load->view('frontend/jalan_kolaka',$isi);
     }
@@ -45,9 +45,9 @@ class Cjalan extends CI_Controller
           redirect('auth/login', 'refresh');
         }      
          
-        $data['content'] = 'backend/jalan/fjalan';
-        $data['judul']='Upload'; //varibel title
-        $data['sub_judul']='Gambar'; //varibel title 
+        $data['content']    = 'backend/jalan/fjalan';
+        $data['judul']      ='Upload'; //varibel title
+        $data['sub_judul']  ='Gambar'; //varibel title 
          
         //view yang tampil jika fungsi add diakses pada url
         $this->load->view('template',$data);
@@ -62,13 +62,13 @@ class Cjalan extends CI_Controller
         }
 
         $this->load->library('upload');
-        $nmfile = "jalan_".time(); //nama file saya beri nama langsung dan diikuti fungsi time
-        $config['upload_path'] = './assets/gambar/jalan'; //path folder
-        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-        $config['max_size'] = '2048'; //maksimum besar file 2M
-        $config['max_width']  = '1288'; //lebar maksimum 1288 px
-        $config['max_height']  = '768'; //tinggi maksimu 768 px
-        $config['file_name'] = $nmfile; //nama yang terupload nantinya
+        $nmfile                   = "jalan_".time(); //nama file saya beri nama langsung dan diikuti fungsi time
+        $config['upload_path']    = './assets/gambar/jalan'; //path folder
+        $config['allowed_types']  = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['max_size']       = '2048'; //maksimum besar file 2M
+        $config['max_width']      = '1288'; //lebar maksimum 1288 px
+        $config['max_height']     = '768'; //tinggi maksimu 768 px
+        $config['file_name']      = $nmfile; //nama yang terupload nantinya
  
         $this->upload->initialize($config);
          
@@ -76,18 +76,20 @@ class Cjalan extends CI_Controller
         {
             if ($this->upload->do_upload('filefoto'))
             {
-                $gbr = $this->upload->data();
-                $data = array(
-                  'nm_gbr' =>$gbr['file_name'],
-                  'tipe_gbr' =>$gbr['file_type'],
-                  'nama_gbr' =>$this->input->post('textnama'),
-                  'jenis' =>$this->input->post('jenis'),
-                  'kondisi' =>$this->input->post('kondisi'),
-                  'panjang' =>$this->input->post('panjang'),
-                  'lokasi' =>$this->input->post('lokasi'),
-                  'kecamatan' =>$this->input->post('kecamatan'),
-                  'kelurahan' =>$this->input->post('kelurahan'),
-                  'ket_gbr' =>$this->input->post('textket')
+                $gbr              = $this->upload->data();
+                $data             = array(
+                  'nm_gbr'        =>$gbr['file_name'],
+                  'tipe_gbr'      =>$gbr['file_type'],
+                  'nama_gbr'      =>$this->input->post('textnama'),
+                  'jenis'         =>$this->input->post('jenis'),
+                  'kondisi'       =>$this->input->post('kondisi'),
+                  'panjang'       =>$this->input->post('panjang'),
+                  'lokasi'        =>$this->input->post('lokasi'),
+                  'latitude'      =>$this->input->post('latitude'),
+                  'longitude'     =>$this->input->post('longitude'),
+                  'kecamatan'     =>$this->input->post('kecamatan'),
+                  'kelurahan'     =>$this->input->post('kelurahan'),
+                  'ket_gbr'       =>$this->input->post('textket')
                    
                 );
  
@@ -111,13 +113,13 @@ class Cjalan extends CI_Controller
           redirect('auth/login', 'refresh');
         }
 
-        $data['content'] = 'backend/jalan/fejalan';
-        $data['judul']='Upload'; //varibel title
-        $data['sub_judul']='Edit Gambar'; //varibel title 
+        $data['content']      = 'backend/jalan/fejalan';
+        $data['judul']        ='Upload'; //varibel title
+        $data['sub_judul']    ='Edit Gambar'; //varibel title 
 
-        $idgbr=$this->input->get('idgbr'); //mengambil variabel get idgbr dari url
-        $where=array('id'=>$idgbr); //array where query untuk menampilkan gambar per id
-        $data['row'] = $this->mjalan->get_byimage($where);   //query dari model ambil per id
+        $idgbr                =$this->input->get('idgbr'); //mengambil variabel get idgbr dari url
+        $where                =array('id'=>$idgbr); //array where query untuk menampilkan gambar per id
+        $data['row']          = $this->mjalan->get_byimage($where);   //query dari model ambil per id
    
         //utk form edit nya, saya tambahkan sebuah view bernama feupload.php
         $this->load->view('template',$data);
@@ -132,42 +134,44 @@ class Cjalan extends CI_Controller
       }
 
        $this->load->library('upload');// library dapat di load di fungsi , di autoload atau di construc nya tinggal pilih salah satunya
-       $nmfile = "jalan_".time(); //nama file saya beri nama langsung dan diikuti fungsi time
-       $path   = './assets/gambar/jalan/'; //path folder
-       $config['upload_path'] = $path; //variabel path untuk config upload
+       $nmfile                  = "jalan_".time(); //nama file saya beri nama langsung dan diikuti fungsi time
+       $path                    = './assets/gambar/jalan/'; //path folder
+       $config['upload_path']   = $path; //variabel path untuk config upload
        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
-       $config['max_size'] = '2048'; //maksimum besar file 2M
-       $config['max_width']  = '1288'; //lebar maksimum 1288 px
-       $config['max_height']  = '768'; //tinggi maksimu 768 px
-       $config['file_name'] = $nmfile; //nama yang terupload nantinya
+       $config['max_size']      = '2048'; //maksimum besar file 2M
+       $config['max_width']     = '1288'; //lebar maksimum 1288 px
+       $config['max_height']    = '768'; //tinggi maksimu 768 px
+       $config['file_name']     = $nmfile; //nama yang terupload nantinya
  
        $this->upload->initialize($config);
  
-       $idgbr      = $this->input->post('kode'); /* variabel id gambar */
-       $filelama   = $this->input->post('filelama'); /* variabel file gambar lama */
+       $idgbr                   = $this->input->post('kode'); /* variabel id gambar */
+       $filelama                = $this->input->post('filelama'); /* variabel file gambar lama */
  
        if($_FILES['filefoto']['name'])
        {
            if ($this->upload->do_upload('filefoto'))
            {
-               $gbr = $this->upload->data();
-               $data = array(
-                 'nm_gbr' =>$gbr['file_name'],
-                 'tipe_gbr' =>$gbr['file_type'],
-                 'nama_gbr' =>$this->input->post('textnama'),
-                 'jenis' =>$this->input->post('jenis'),
-                 'kondisi' =>$this->input->post('kondisi'),
-                 'panjang' =>$this->input->post('panjang'),
-                 'lokasi' =>$this->input->post('lokasi'),
-                 'kecamatan' =>$this->input->post('kecamatan'),
-                 'kelurahan' =>$this->input->post('kelurahan'),
-                 'ket_gbr' =>$this->input->post('textket')
+               $gbr             = $this->upload->data();
+               $data            = array(
+                 'nm_gbr'       =>$gbr['file_name'],
+                 'tipe_gbr'     =>$gbr['file_type'],
+                 'nama_gbr'     =>$this->input->post('textnama'),
+                 'jenis'        =>$this->input->post('jenis'),
+                 'kondisi'      =>$this->input->post('kondisi'),
+                 'panjang'      =>$this->input->post('panjang'),
+                 'lokasi'       =>$this->input->post('lokasi'),
+                 'latitude'     =>$this->input->post('latitude'),
+                 'longitude'    =>$this->input->post('longitude'),
+                 'kecamatan'    =>$this->input->post('kecamatan'),
+                 'kelurahan'    =>$this->input->post('kelurahan'),
+                 'ket_gbr'      =>$this->input->post('textket')
  
                );
  
                @unlink($path.$filelama);//menghapus gambar lama, variabel dibawa dari form
  
-               $where =array('id'=>$idgbr); //array where query sebagai identitas pada saat query dijalankan
+               $where=array('id'=>$idgbr); //array where query sebagai identitas pada saat query dijalankan
                $this->mjalan->get_update($data,$where); //akses model untuk menyimpan ke database
  
                $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Edit dan Upload gambar berhasil !!</div></div>"); //pesan yang muncul jika berhasil diupload pada session flashdata
@@ -183,20 +187,22 @@ class Cjalan extends CI_Controller
  
            $data = array(
                // 'ket_gbr' =>$this->input->post('textket')
-                 'nama_gbr' =>$this->input->post('textnama'),
-                 'jenis' =>$this->input->post('jenis'),
-                 'kondisi' =>$this->input->post('kondisi'),
-                 'panjang' =>$this->input->post('panjang'),
-                 'lokasi' =>$this->input->post('lokasi'),
-                 'kecamatan' =>$this->input->post('kecamatan'),
-                 'kelurahan' =>$this->input->post('kelurahan'),
-                 'ket_gbr' =>$this->input->post('textket')
+                 'nama_gbr'       =>$this->input->post('textnama'),
+                 'jenis'          =>$this->input->post('jenis'),
+                 'kondisi'        =>$this->input->post('kondisi'),
+                 'panjang'        =>$this->input->post('panjang'),
+                 'lokasi'         =>$this->input->post('lokasi'),
+                 'latitude'       =>$this->input->post('latitude'),
+                 'longitude'      =>$this->input->post('longitude'),
+                 'kecamatan'      =>$this->input->post('kecamatan'),
+                 'kelurahan'      =>$this->input->post('kelurahan'),
+                 'ket_gbr'        =>$this->input->post('textket')
            );
  
            $where =array('id'=>$idgbr); //array where query sebagai identitas pada saat query dijalankan
            $this->mjalan->get_update($data,$where); //akses model untuk menyimpan ke database
  
-           $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-danger\" id=\"alert\">Berhasil edit, Gambar tidak ada diupload !!</div></div>");
+           $this->session->set_flashdata("pesan", "<div class=\"col-md-12\"><div class=\"alert alert-success\" id=\"alert\">Update !!</div></div>");
            redirect('cjalan'); /* jika berhasil maka akan kembali ke home upload */
        }
    }
